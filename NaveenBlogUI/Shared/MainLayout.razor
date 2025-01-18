@@ -1,0 +1,26 @@
+﻿@using MudBlazor
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <Header  />
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    protected override void OnInitialized()
+    {
+        // Check if we're not already on the homepage
+        if (NavigationManager.Uri != NavigationManager.ToAbsoluteUri("/home").ToString())
+        {
+            // Redirect to homepage only if not already on it
+            NavigationManager.NavigateTo("/home", true); // Force reload if not on the homepage
+        }
+    }
+}

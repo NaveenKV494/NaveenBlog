@@ -1,0 +1,100 @@
+﻿@page "/home"
+@inject NavigationManager NavigationManager
+@using MudBlazor
+
+<MudContainer>
+    <MudGrid>
+        <MudItem xs="6" sm="6">
+            <MudPaper></MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="6">
+        <MudText Typo="Typo.h2" Color="Color.Error">Welcome to my Blog</MudText>
+        <MudText Typo="Typo.h5">
+            Embark on a journey through unique storytelling and thought-provoking narratives.
+            Discover the latest updates and personal insights from Naveen’s world.
+        </MudText>
+        </MudItem>
+        <MudItem xs="6" sm="6">
+            <MudText Typo="Typo.h2" Color="Color.Dark">Naveen's creative corner'</MudText>
+        </MudItem>
+        <MudItem xs="6" sm="6">
+            <MudText Typo="Typo.body1">Naveen’s Creative Corner is a reflection of my journey as a writer, 
+                where I share my passion for storytelling and literature. 
+                Established in 2023, this blog serves as a platform for my thoughts, insights, and 
+                critiques on various literary works. My mission is to inspire and engage readers through 
+                creative writing, insightful book reviews, and personalized recommendations. 
+                I believe in the power of words to connect people and evoke emotions. 
+                Join me as we explore the world of literature together, celebrating creativity 
+                and authenticity in every piece.
+            </MudText>
+        </MudItem>
+        <MudItem xs="3" sm="3" lg="3">
+            <MudCard>
+                <MudCardContent>
+                    <MudText Typo="Typo.h6" Color="Color.Error">Writings</MudText>
+                    <MudText>Read my original writings.Contains Quotes, Poems, Short Stories and Articles written in both English and Tamil</MudText>
+                    <MudList Color="Color.Warning">
+                        <MudListItem @onclick="NavigateToQuotesPage" >Quotes</MudListItem>
+                        <MudListItem @onclick="NavigateToPoemsPage">Poems</MudListItem>
+                        <MudListItem @onclick="NavigateToShortStoriesPage">Short Stories</MudListItem>
+                        <MudListItem @onclick="NavigateToArticlesPage">Articles</MudListItem>
+                    </MudList>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <!-- Book Reviews Section -->
+        <MudItem xs="3" sm="3" lg="3">
+            <MudCard >
+                <MudCardContent>
+                    <MudText Typo="Typo.h6" Color="Color.Error">Book Reviews</MudText>
+                    <MudText>Read reviews of the latest books across various genres.</MudText>
+                    <MudButton Variant="Variant.Filled" @onclick="NavigateToBookReviewsPage" Color="Color.Warning">Explore</MudButton>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <!-- Book Recommendations Section -->
+        <MudItem xs="6" sm="6" lg="3">
+            <MudCard >
+                <MudCardContent>
+                    <MudText Typo="Typo.h6" Color="Color.Error">Book Recommendations</MudText>
+                    <MudText>Find the best book recommendations tailored for you.</MudText>
+                    <MudButton Variant="Variant.Filled" @onclick="NavigateToBookRecommendationsPage" Color="Color.Warning">Explore</MudButton>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private void NavigateToQuotesPage()
+    {
+        NavigationManager.NavigateTo("/writings/quotes");
+    }
+
+    private void NavigateToPoemsPage()
+    {
+        NavigationManager.NavigateTo("/writings/poems");
+    }
+
+    private void NavigateToShortStoriesPage()
+    {
+        NavigationManager.NavigateTo("/writings/shortstories");
+    }
+
+    private void NavigateToArticlesPage()
+    {
+        NavigationManager.NavigateTo("/writings/articles");
+    }
+
+    private void NavigateToBookReviewsPage()
+    {
+        NavigationManager.NavigateTo("/bookreviews");
+    }
+
+    private void NavigateToBookRecommendationsPage()
+    {
+        NavigationManager.NavigateTo("/bookrecoms");
+    }
+}

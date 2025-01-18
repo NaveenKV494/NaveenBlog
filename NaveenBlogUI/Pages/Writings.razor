@@ -1,0 +1,96 @@
+﻿@page "/writings"
+@inject HttpClient Http
+@using NaveenBlogUI.Models
+@using NaveenBlogUI.Services
+@using MudBlazor
+@inject WritingService WritingService
+@inject NavigationManager NavigationManager
+
+<MudTabs>
+    <MudTabPanel Text="Quotes" Id="quotes">
+        @if (quotes == null || !quotes.Any())
+        {
+            <p><em>No quotes available.</em></p>
+        }
+        else
+        {
+            @foreach (var post in quotes)
+            {
+                <MudPaper Class="pa-4 mb-2">
+                    <h4>@post.Title</h4>
+                    <p>@post.Content</p>
+                    <small>@post.DateCreated.ToShortDateString()</small>
+                </MudPaper>
+            }
+        }
+    </MudTabPanel>
+
+    <MudTabPanel Text="Poems" Id="poems">
+        @if (poems == null || !poems.Any())
+        {
+            <p><em>No poems available.</em></p>
+        }
+        else
+        {
+            @foreach (var post in poems)
+            {
+                <MudPaper Class="pa-4 mb-2">
+                    <h4>@post.Title</h4>
+                    <p>@post.Content</p>
+                    <small>@post.DateCreated.ToShortDateString()</small>
+                </MudPaper>
+            }
+        }
+    </MudTabPanel>
+
+    <MudTabPanel Text="Short Stories" Id="shortStories">
+        @if (shortStories == null || !shortStories.Any())
+        {
+            <p><em>No short stories available.</em></p>
+        }
+        else
+        {
+            @foreach (var post in shortStories)
+            {
+                <MudPaper Class="pa-4 mb-2">
+                    <h4>@post.Title</h4>
+                    <p>@post.Content</p>
+                    <small>@post.DateCreated.ToShortDateString()</small>
+                </MudPaper>
+            }
+        }
+    </MudTabPanel>
+
+    <MudTabPanel Text="Articles" Id="articles">
+        @if (articles == null || !articles.Any())
+        {
+            <p><em>No articles available.</em></p>
+        }
+        else
+        {
+            @foreach (var post in articles)
+            {
+                <MudPaper Class="pa-4 mb-2">
+                    <h4>@post.Title</h4>
+                    <p>@post.Content</p>
+                    <small>@post.DateCreated.ToShortDateString()</small>
+                </MudPaper>
+            }
+        }
+    </MudTabPanel>
+</MudTabs>
+
+@code {
+    private List<Post> quotes;
+    private List<Post> poems;
+    private List<Post> shortStories;
+    private List<Post> articles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        quotes = await WritingService.GetQuotesAsync();
+        poems = await WritingService.GetPoemsAsync();
+        shortStories = await WritingService.GetShortStoriesAsync();  // Added the missing method here
+        articles = await WritingService.GetArticlesAsync();
+    }
+}

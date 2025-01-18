@@ -1,0 +1,37 @@
+﻿@using MudBlazor
+@inject NavigationManager NavigationManager
+<MudAppBar style="background-color:#FF6D00" Fixed="false" Class="h-10">
+	<MudText Typo="Typo.h5" Color="Color.Inherit">Naveen's Blog</MudText>
+	<MudSpacer />
+	<MudIcon Icon="@Icons.Material.Filled.Home"/>
+	<MudLink Href="/home" Color="Color.Inherit" Style="padding-left: 10px;">Home</MudLink>
+	<MudSpacer/>
+	<MudIcon Icon="@Icons.Material.Filled.Draw" />
+	<MudMenu Label="Writings" Color="Color.Inherit" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Class="mt-3">
+		<MudNavLink Href="/writings/quotes" Match="NavLinkMatch.All">Quotes</MudNavLink>
+		<MudNavLink Href="/writings/poems" Match="NavLinkMatch.All">Poems</MudNavLink>
+		<MudNavLink Href="/writings/shortstories" Match="NavLinkMatch.All">Short Stories</MudNavLink>
+		<MudNavLink Href="/writings/articles" Match="NavLinkMatch.All">Articles</MudNavLink>
+	</MudMenu>
+	<MudSpacer />
+	<MudIcon Icon="@Icons.Material.Filled.MenuBook" />
+	<MudLink Href="/bookreviews" Color="Color.Inherit" Style="padding-left: 10px;">Book Reviews</MudLink>
+	<MudSpacer />
+	<MudIcon Icon="@Icons.Material.Filled.LibraryBooks" />
+	<MudLink Href="/bookrecoms" Color="Color.Inherit" Style="padding-left: 10px;">Read Recommendations</MudLink>
+	<MudSpacer />
+	<MudLink Href="https://www.instagram.com/nameisnaveen?igsh=cnh3NTRrN2wyZGVh" Target="_blank" Color="Color.Inherit" Style="padding-right: 10px;">
+		<MudIcon Icon="@Icons.Custom.Brands.Instagram"/>
+	</MudLink>
+	<MudLink Href="https://www.goodreads.com/user/show/49190448-naveen-kumar" Target="_blank" Color="Color.Inherit">
+		<img src="@good" alt="Goodreads" style="width:22px; height:22px;" />
+	</MudLink>
+
+
+	<MudSpacer />
+
+</MudAppBar>
+
+@code {
+	const string good = "/images/goodreadslogo.svg";
+}

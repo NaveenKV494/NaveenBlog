@@ -1,0 +1,51 @@
+﻿@page "/bookreviews"
+@inject HttpClient Http
+@using NaveenBlogUI.Models
+@using NaveenBlogUI.Services
+@inject BookReviewService BookReviewService
+@inject NavigationManager NavigationManager
+@using MudBlazor
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-5">
+    <MudText Typo="Typo.h4" GutterBottom="true">📚 Book Reviews</MudText>
+
+    @if (BookReviewService.BookReviews == null || !BookReviewService.BookReviews.Any())
+    {
+        <MudText Typo="Typo.subtitle1" Color="Color.Secondary">
+            <MudIcon Icon="@Icons.Material.Filled.Info" /> No reviews available.
+        </MudText>
+    }
+    else
+    {
+        <MudGrid GutterSize="3">
+            @foreach (var review in BookReviewService.BookReviews)
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard Class="mb-4" Style="height: 100%;">
+                        <MudCardMedia Image="@review.CoverImageUrl" Height="550" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6" GutterBottom="true">@review.Title</MudText>
+                            <MudText Typo="Typo.subtitle2" Color="Color.Secondary">@review.Author</MudText>
+                            <MudText Typo="Typo.caption" Color="Color.Info">Genre: @review.Genre | Published: @review.PublishedYear</MudText>
+                            <MudDivider Class="my-2" />
+                            <MudText Typo="Typo.body2">@review.Review</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Variant="Variant.Outlined" Color="Color.Primary"
+                                       OnClick="@(async () => NavigationManager.NavigateTo($"/bookreviews/{review.Id}"))">
+                                Read More
+                            </MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
+    }
+</MudContainer>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await BookReviewService.LoadReviewAsync();
+    }
+}

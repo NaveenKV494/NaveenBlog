@@ -1,0 +1,6 @@
+@NaveenBlog_HostAddress = http://localhost:5052
+
+GET {{NaveenBlog_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
